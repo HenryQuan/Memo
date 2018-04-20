@@ -1,12 +1,13 @@
-import React, { Component } from 'react';
-import { View } from 'react-native';
+import { Navigation } from 'react-native-navigation';
 
-export default class App extends Comment {
-  render () {
-    return (
-      <View>
-        
-      </View>
-    )
-  }
-}
+import { registerScreens } from '../screen';
+
+registerScreens();
+
+Navigation.startSingleScreenApp({
+  screen: {
+    screen: 'text.SaveText',
+    title: 'Save Text',
+  },
+  animationType: 'fade'
+});
