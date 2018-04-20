@@ -7,7 +7,7 @@ registerScreens();
 Navigation.startSingleScreenApp({
   screen: {
     screen: 'text.SaveText',
-    title: 'Save Text',
+    title: 'Simo',
   },
   animationType: 'fade'
 });

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Vibration, Linking, Text } from 'react-native';
+import { View, Vibration, Text, Clipboard } from 'react-native';
 import { EasyTouchable } from './common/EasyTouchable';
 
 export default class TextCell extends Component {
@@ -9,7 +9,7 @@ export default class TextCell extends Component {
     const { showBtn } = this.state;
     const { time, text } = this.props.data;
     return (
-      <EasyTouchable onLongPress={this.showButton}>
+      <EasyTouchable onLongPress={this.showButton} onPress={this.copyText}>
         <View>
           <Text>{time}</Text>
           <Text>{text}</Text>
@@ -30,12 +30,12 @@ export default class TextCell extends Component {
   /**
    * Open link if there is any
    */
-  openLink = () => {
-    const { text } = this.props;    
-    let regex = new RegExp('(http.+?.com|www..+?.com)');
-    let matches = text.match(regex);
-    if (matches.count == 1) {
-      Linking.openURL(matches[0]);
-    }
+  copyText = () => {
+    // Backup
+    Clipboard.getString().then(text => {
+      global.clipboard = text;
+      console.log(global.clipboard);
+    });
+    Clipboard.setString(this.props.data.text);
   }
 }
