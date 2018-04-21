@@ -1,14 +1,38 @@
 import React, { Component } from 'react';
-import { SafeAreaView, Button } from 'react-native';
+import { SafeAreaView, Button, Platform } from 'react-native';
 import { DataManager } from '../core/DataManager';
 import { TextList, NewTextBtn } from '../component';
 import store from 'react-native-simple-store';
 import { Data } from '../constant/value';
 
 export default class SaveText extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
     this.state = { data: [] };
+  }
+
+  static navigatorButtons = {
+    rightButtons: [
+      {
+        id: 'setting', buttonColor: 'white', disableIconTint: true,
+        icon: require('../img/Setting.png')
+      }
+    ],
+  };
+
+  onNavigatorEvent(event) {
+    if (event.type == 'NavBarButtonPress') {
+      if (event.id == 'setting') {
+        this.props.navigator.push({
+          screen: 'text.Setting',
+          title: 'Settings',
+          navigatorStyle: Platform.OS == 'android' ? {
+            navBarButtonColor: 'white' 
+          } : {}
+        })
+      }
+    }
   }
 
   async componentWillMount() {

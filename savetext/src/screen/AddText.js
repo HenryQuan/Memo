@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, TextInput, StyleSheet, Clipboard } from 'react-native';
+import { SafeAreaView, TextInput, StyleSheet, Clipboard } from 'react-native';
 
 export default class SaveText extends Component {
   state = { text: '' };
@@ -50,10 +50,10 @@ export default class SaveText extends Component {
   render() {
     const { textStyle } = styles;
     return (
-      <View style={{flex: 1, backgroundColor: 'white'}}>
+      <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
         <TextInput value={this.state.text} style={textStyle} multiline autoCapitalize='none' autoCorrect={false}
           onChangeText={(text) => this.setState({text: text})}/>
-      </View>
+      </SafeAreaView>
     )
   }
 }

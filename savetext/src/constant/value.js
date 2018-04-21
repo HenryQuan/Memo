@@ -5,3 +5,8 @@ export const Data = {
   First: 'Text@first_launch',
   Version: 'Text@version'
 }
+
+export const Github = 'https://github.com/HenryQuan/Teksute';
+export const GooglePlay = '';
+export const AppStore = '';
+export const Developer = 'mailto:development.henryquan@gmail.com';

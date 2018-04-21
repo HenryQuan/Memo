@@ -18,7 +18,7 @@ class TextList extends Component {
   render() {
     const { data } = this.state;
     return (
-      <FlatList data={data} keyExtractor={this.itemKey} extraData={this.state}
+      <FlatList data={data} keyExtractor={this.itemKey} extraData={this.state} showsVerticalScrollIndicator={false}
         renderItem={({item}) => <TextCell data={item} update={this.props.update}/>}/>
     )
   }
