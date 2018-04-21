@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { View, FlatList, Button } from 'react-native';
 import TextCell from './TextCell';
 
-class TextList extends Component {
+class TextList extends PureComponent {
   constructor(props) {
     super();
     this.state = { data: props.data };
@@ -10,7 +10,6 @@ class TextList extends Component {
 
   componentWillReceiveProps() {
     const { data } = this.props;
-    console.log(data);
     this.setState({data: data});
   }
 

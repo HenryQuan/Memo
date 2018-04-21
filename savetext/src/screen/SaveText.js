@@ -9,7 +9,7 @@ export default class SaveText extends Component {
   constructor(props) {
     super(props);
     props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
-    this.state = { data: [] };
+    this.state = {data: []};
   }
 
   static navigatorButtons = {
@@ -45,7 +45,7 @@ export default class SaveText extends Component {
     const { data } = this.state;
     return (
       <SafeAreaView style={{flex: 1}}>
-        <TextList data={data} update={this.updateList}/>
+        <TextList data={data} update={(data) => this.setState({data: data}, () => this.forceUpdate())}/>
         <NewTextBtn title='Add a new text...' onPress={this.addNewText}/>              
       </SafeAreaView>
     )
@@ -66,12 +66,5 @@ export default class SaveText extends Component {
         store.save(Data.Saved, global.saved);
       }}
     })
-  }
-
-  /**
-   * Update list item
-   */
-  updateList = () => {
-
   }
 }

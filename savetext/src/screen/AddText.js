@@ -9,7 +9,7 @@ export default class SaveText extends Component {
     this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
     Clipboard.getString().then(text => {
       if (text.length > 10) {
-        this.setState({ text: text });
+        this.setState({text: text});
         // Clear clipboard
         Clipboard.setString('');
       }
@@ -49,9 +49,10 @@ export default class SaveText extends Component {
 
   render() {
     const { textStyle } = styles;
+    const { auto } = this.state;
     return (
       <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
-        <TextInput value={this.state.text} style={textStyle} multiline autoCapitalize='none' autoCorrect={false}
+        <TextInput value={this.state.text} autoFocus style={textStyle} multiline autoCapitalize='none' autoCorrect={false}
           onChangeText={(text) => this.setState({text: text})}/>
       </SafeAreaView>
     )
