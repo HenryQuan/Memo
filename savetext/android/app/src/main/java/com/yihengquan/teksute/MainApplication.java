@@ -2,7 +2,6 @@ package com.yihengquan.teksute;
 
 import com.facebook.react.ReactPackage;
 import com.reactnativenavigation.NavigationApplication;
-import com.azendoo.reactnativesnackbar.SnackbarPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -19,7 +18,6 @@ public class MainApplication extends NavigationApplication {
     // Add additional packages you require here
     // No need to add RnnPackage and MainReactPackage
     return Arrays.<ReactPackage>asList(
-            new SnackbarPackage()
     );
   }
 

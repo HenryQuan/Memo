@@ -1,2 +1,1 @@
 global.saved = [];
-global.clipboard = '';

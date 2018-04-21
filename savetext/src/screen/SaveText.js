@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Button } from 'react-native';
+import { SafeAreaView, Button } from 'react-native';
 import { DataManager } from '../core/DataManager';
 import { TextList, NewTextBtn } from '../component';
 import store from 'react-native-simple-store';
@@ -20,10 +20,10 @@ export default class SaveText extends Component {
   render() {
     const { data } = this.state;
     return (
-      <View style={{flex: 1}}>
+      <SafeAreaView style={{flex: 1}}>
         <TextList data={data} update={this.updateList}/>
         <NewTextBtn title='Add a new text...' onPress={this.addNewText}/>              
-      </View>
+      </SafeAreaView>
     )
   }
 

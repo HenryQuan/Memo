@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { View, Vibration, Text, Clipboard, StyleSheet } from 'react-native';
-import Snackbar from 'react-native-snackbar';
+import { View, Vibration, Text, Clipboard, StyleSheet, Linking, Alert } from 'react-native';
+import HyperlinkedText from 'react-native-hyperlinked-text';
 import { EasyTouchable } from './common/EasyTouchable';
-import { GREY } from 'react-native-material-color';
+import { GREY, DEEPPRUPLE, GREEN, PURPLE, BLUE } from 'react-native-material-color';
 
 export default class TextCell extends Component {
   state = { showBtn: false }
@@ -15,7 +15,28 @@ export default class TextCell extends Component {
       <EasyTouchable onLongPress={this.showButton} onPress={this.copyText}>
         <View style={viewStyle}>
           <Text style={timeStyle}>{time}</Text>
-          <Text style={textStyle}>{text}</Text>
+          <HyperlinkedText style={textStyle} onLinkPress={(url, text) => Linking.openURL(url)} linkDefs={[
+              {
+                regex: /([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)/mgi,
+                style: {color: GREEN[700], fontSize: 18},
+                onPress: (mail) => Linking.openURL('mailto:' + mail)
+              },
+              {
+                regex: /\d{5,}/mgi,
+                style: {color: BLUE[700], fontSize: 18},
+                onPress: (phone) => Linking.openURL('tel:' + phone)
+              },
+              {
+                regex: /(www|http:|https:)+[^\s]+[\w]/g,
+                style: {color: DEEPPRUPLE[500], fontSize: 18},
+                onPress: (link) => {
+                  var webLink = link;
+                  if (!link.includes('http')) webLink = 'https://' + webLink;
+                  Linking.openURL(webLink)   
+                }             
+              }]}>
+            {text}
+            </HyperlinkedText>
           { showBtn ? <Text>Coming soon...</Text> : null}
         </View>
       </EasyTouchable>
@@ -34,34 +55,28 @@ export default class TextCell extends Component {
    * Open link if there is any
    */
   copyText = () => {
-    Clipboard.setString(this.props.data.text);
-    // Clipboard.getString().then(text => {
-    //   // Backup      
-    //   global.clipboard = text;
-      
-    //   // Show snackbar
-    //   Snackbar.show({
-    //     title: 'Text has been copied',
-    //     duration: Snackbar.LENGTH_LONG,
-    //     action: {
-    //       title: 'UNDO',
-    //       color: 'orange',
-    //       onPress: () => { Clipboard.setString(global.clipboard) }
-    //     }
-    //   });
-    // });
+    Clipboard.getString().then(text => {
+      Clipboard.setString(this.props.data.text);
+      Alert.alert(
+        'Text has been copied',
+        'By tapping undo, text copied previously will be back',
+        [
+          {text: 'UNDO', onPress: () => Clipboard.setString(text), style: 'cancel'},
+          {text: 'OK', onPress: () => console.log('Copy done')},
+        ]
+      )
+    })
   }
 }
 
 const styles = StyleSheet.create({
   timeStyle: {
-    fontSize: 12,
+    fontSize: 10,
     fontWeight: 'bold',
     color: GREY[400],
     paddingBottom: 6
   },
   textStyle: {
-    fontSize: 16,
     fontWeight: '300',
     color: GREY[900]
   },
