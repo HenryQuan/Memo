@@ -1,4 +1,3 @@
 import { AppRegistry } from 'react-native';
-import App from './src/app/App';
-
-AppRegistry.registerComponent('savetext', () => App);
+import './src/app/App';
+import './src/constant/global';
