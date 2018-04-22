@@ -1,5 +1,6 @@
 import store from 'react-native-simple-store';
-import { Data, VERSION } from '../constant/value';
+import { Data, VERSION, Admoob } from '../constant/value';
+import { AdMobInterstitial } from 'react-native-admob';
 
 class DataManager {
   static async SetupData() {
@@ -9,18 +10,30 @@ class DataManager {
       await store.save(Data.First, false);
       await store.save(Data.Version, VERSION);
       await store.save(Data.Saved, []);
+      await store.save(Data.Ads, false);
     } else {
       // Restore data
+      console.log(await store.get(Data.Ads));
       if (await store.get(Data.Version) != VERSION) {
         // Update game
-        await UpdateData();
+        await this.UpdateData();
       }     
       global.saved = await store.get(Data.Saved);
+      global.ads = await store.get(Data.Ads);
+      // Show ads
+      if (global.ads == true) {
+        AdMobInterstitial.setAdUnitID(Admoob);
+        AdMobInterstitial.setTestDevices([AdMobInterstitial.simulatorId]);
+        AdMobInterstitial.requestAd().then(() => AdMobInterstitial.showAd());
+      }
     }
   }
 
-  async UpdateData() {
-
+  static async UpdateData() {
+    // Update version
+    await store.save(Data.Version, VERSION);
+    // Setup new data
+    if (await store.get(Data.Ads) == null) await store.save(Data.Ads, false)
   }
 }
 

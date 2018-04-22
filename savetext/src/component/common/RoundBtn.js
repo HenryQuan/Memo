@@ -23,14 +23,14 @@ const styles = StyleSheet.create({
     padding: 4
   },
   viewStyle: {
-    height: 26, width: 78,
+    height: 26, width: 96,
     borderRadius: 100,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: DEEPPRUPLE[300]
   },
   textStyle: {
-    color: 'white',
+    color: 'white', width: '100%', textAlign: 'center',
     fontSize: 14, fontWeight: '300'
   }
 })

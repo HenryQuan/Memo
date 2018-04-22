@@ -17,7 +17,7 @@ export default class TextCell extends Component {
     return (
       <EasyTouchable onLongPress={this.showButton} onPress={this.copyText}>
         <View style={viewStyle}>
-          <Text style={timeStyle}>{time}</Text>
+          <Text style={timeStyle}>{'<' + time + '>'}</Text>
           <HyperlinkedText style={textStyle} onLinkPress={(url, text) => Linking.openURL(url)} linkDefs={[
               {
                 regex: /([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)/mgi,
@@ -25,7 +25,7 @@ export default class TextCell extends Component {
                 onPress: (mail) => Linking.openURL('mailto:' + mail)
               },
               {
-                regex: /\d{5,}/mgi,
+                regex: /(?:^| )(\d{5,})(?:$| )/mgi,
                 style: {color: BLUE[700], fontSize: 18, padding: 2},
                 onPress: (phone) => Linking.openURL('tel:' + phone)
               },
@@ -41,7 +41,6 @@ export default class TextCell extends Component {
             {text}
             </HyperlinkedText>
           { showBtn ? this.renderExtraBtn() : null}
-          <Text style={textStyle}>________</Text>
         </View>
       </EasyTouchable>
     )
@@ -138,7 +137,7 @@ const styles = StyleSheet.create({
   },
   extraViewStyle: {
     flexDirection: 'row',
-    justifyContent: 'flex-end',
+    justifyContent: 'space-around',
     paddingLeft: 8,
     marginTop: 8
   }

@@ -3,7 +3,7 @@
   <img src=[https://raw.githubusercontent.com/HenryQuan/Teksute/master/sketch/IOS.png[ width=[128[ height=[128[ />
   <img src=[https://raw.githubusercontent.com/HenryQuan/Teksute/master/sketch/Android.png[ width=[128[ height=[128[ />
 </div>
-A simple text saver for IOS & Android
+A simple text saver for IOS & Android inspired by OnePlus Memo
 
 *This app is not designed for heavy usage and texts are not encrypted for any sensitive information*
 
@@ -22,6 +22,8 @@ A simple text saver for IOS & Android
 - [react-native-material-color](https://github.com/DerayGa/react-native-material-color)
 - [react-native-navigation](https://github.com/wix/react-native-navigation)
 - [react-native-simple-store](https://github.com/jasonmerino/react-native-simple-store)
+- [react-native-admob](https://github.com/sbugert/react-native-admob)
+- [react-native-check-box](https://github.com/crazycodeboy/react-native-check-box)
 
 ## Download
 [App Store]() & [Google Play]()
