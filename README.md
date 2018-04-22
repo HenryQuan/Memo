@@ -1,7 +1,7 @@
 # Teksute
 <div>
-  <img src=[https://raw.githubusercontent.com/HenryQuan/Teksute/master/sketch/IOS.png[ width=[128[ height=[128[ />
-  <img src=[https://raw.githubusercontent.com/HenryQuan/Teksute/master/sketch/Android.png[ width=[128[ height=[128[ />
+  <img src="https://raw.githubusercontent.com/HenryQuan/Teksute/master/sketch/IOS.png" width="128px" height="128px" />
+  <img src="https://raw.githubusercontent.com/HenryQuan/Teksute/master/sketch/Android.png" width="128px" height="128px" />
 </div>
 A simple text saver for IOS & Android inspired by OnePlus Memo
 
