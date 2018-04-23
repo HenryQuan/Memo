@@ -13,3 +13,4 @@ export const AppStore = '';
 export const Developer = 'mailto:development.henryquan@gmail.com';
 
 export const Admoob = 'ca-app-pub-5048098651344514/8142325192';
+export const AdmobIOS = 'ca-app-pub-5048098651344514/9705746351';

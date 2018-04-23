@@ -1,5 +1,6 @@
 import store from 'react-native-simple-store';
-import { Data, VERSION, Admoob } from '../constant/value';
+import { Data, VERSION, Admoob, AdmobIOS } from '../constant/value';
+import { Platform } from 'react-native';
 import { AdMobInterstitial } from 'react-native-admob';
 
 class DataManager {
@@ -22,7 +23,7 @@ class DataManager {
       global.ads = await store.get(Data.Ads);
       // Show ads
       if (global.ads == true) {
-        AdMobInterstitial.setAdUnitID(Admoob);
+        AdMobInterstitial.setAdUnitID(Platform.OS == 'ios' ? AdmobIOS : Admoob);
         AdMobInterstitial.setTestDevices([AdMobInterstitial.simulatorId]);
         AdMobInterstitial.requestAd().then(() => AdMobInterstitial.showAd());
       }
